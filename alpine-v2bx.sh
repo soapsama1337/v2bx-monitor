@@ -3,7 +3,7 @@
 # Alpine NAT 终极完全体 (修复进程名大小写匹配 BUG)
 # ==========================================
 
-echo "=> [1/4] 清理战场..."
+echo "=> [1/4] 清理..."
 rm -f /root/alpine-v2bx-core.sh /root/alpine-v2bx-loop.sh
 kill -9 $(pgrep -f alpine-v2bx-loop) 2>/dev/null
 kill -9 $(pgrep -f alpine-v2bx-core) 2>/dev/null
@@ -13,7 +13,7 @@ cat > /root/alpine-v2bx-core.sh << 'EOF'
 #!/bin/sh
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-# 绝杀技：使用 ps 和 grep -i 进行忽略大小写的模糊匹配！
+# 使用 ps 和 grep -i 进行忽略大小写的模糊匹配！
 # grep -v "alpine-v2bx" 是为了防止脚本查到自己。
 if ! ps w | grep -v "grep" | grep -v "alpine-v2bx" | grep -i "v2bx" > /dev/null; then
     echo "$(date '+%Y-%m-%d %H:%M:%S') - [Alpine-Watchdog] 发现进程掉线，执行启动..." >> /var/log/v2bx_alpine_monitor.log
