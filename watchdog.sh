@@ -1,17 +1,13 @@
 #!/bin/bash
 
-# 检查 v2bx 服务状态
+# 检查 v2bx 状态
 status=$(systemctl is-active v2bx)
 
-# 如果状态不是 active (即显示“未运行”)
+# 如果状态不是 active
 if [ "$status" != "active" ]; then
-    # 记录带时间戳的日志
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - 节点崩溃，正在尝试重启..." >> /var/log/v2bx_monitor.log
+    # 记录时间戳日志
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - 状态异常，执行 v2bx restart" >> /var/log/v2bx_monitor.log
     
-    # 针对 NAT 机器优化：重启前释放一下内存缓存
-    sync && echo 3 > /proc/sys/vm/drop_caches
-    sleep 1
-    
-    # 执行重启指令
+    # 删掉了会导致报错的内存清理命令，直接执行重启
     v2bx restart >> /var/log/v2bx_monitor.log 2>&1
 fi
