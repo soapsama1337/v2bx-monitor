@@ -1,9 +1,12 @@
 #!/bin/sh
-# 强制环境变量，确保 cron 能找到所有命令
+# 强制环境变量
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-# 检查进程，不依赖 systemctl
+# 核心监控逻辑
 if ! pgrep -x "v2bx" > /dev/null; then
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - [Alpine] 发现进程消失，正在重启..." >> /var/log/v2bx_monitor.log
-    v2bx restart >> /var/log/v2bx_monitor.log 2>&1
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - [Alpine] 检测到进程消失，正在尝试拉起..." >> /var/log/v2bx_monitor.log
+    /usr/bin/v2bx restart >> /var/log/v2bx_monitor.log 2>&1
+else
+    # 这一行是“心跳”，用来证明脚本确实在跑
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - [Alpine] 守护中：v2bx 运行正常" >> /var/log/v2bx_monitor.log
 fi
