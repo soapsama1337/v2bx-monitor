@@ -38,7 +38,7 @@
 > **注意**: 该脚本会默认安装在 `/root/w.sh`，并自动添加每分钟运行一次的定时任务。
 
 ```bash
-curl -sLk https://raw.githubusercontent.com/soapsama1337/v2bx-monitor/main/watchdog.sh -o /root/w.sh && chmod +x /root/w.sh && (crontab -l 2>/dev/null; echo "* * * * * /bin/bash /root/w.sh") | crontab - && /bin/bash /root/w.sh
+curl -sLk https://raw.githubusercontent.com/soapsama1337/v2bx-monitor/main/watchdog.sh -o /root/w.sh && chmod +x /root/w.sh && (crontab -l 2>/dev/null; echo "* * * * * /bin/bash /root/w.sh") | crontab - && echo "✅ 脚本已同步并成功添加定时任务！"
 ```
 
 
