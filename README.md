@@ -39,6 +39,10 @@
 
 ```bash
 curl -sLk https://raw.githubusercontent.com/soapsama1337/v2bx-monitor/main/watchdog.sh -o /root/w.sh && chmod +x /root/w.sh && (crontab -l 2>/dev/null; echo "* * * * * /bin/bash /root/w.sh") | crontab - && /bin/bash /root/w.sh
+```
 
+
+---
 * **检测脚本是否生效**: 一旦输入完命令之后 请手动停止一次v2bx 然后等一分钟看他是否会自动运行
+---
 
