@@ -28,7 +28,7 @@
 
 ## 🛠️ 环境要求
 
-* **操作系统**: Debian（目前只测试过Debian） Alpine (不支持)
+* **操作系统**: Debian/Alpine(目前只试过这两个 一般通用）
 * **核心依赖**: `crontab` (用于定时任务), `curl`
 * **适用后端**: [wyx2685/V2bX](https://github.com/wyx2685/V2bX)
 
@@ -42,9 +42,13 @@
 ```bash
 curl -sLk https://raw.githubusercontent.com/soapsama1337/v2bx-monitor/main/watchdog.sh -o /root/w.sh && chmod +x /root/w.sh && (crontab -l 2>/dev/null; echo "* * * * * /bin/bash /root/w.sh") | crontab - && echo "✅ 脚本已同步并成功添加定时任务！"
 ```
+### Alpine系统安装 
 
+```bash
+curl -sLk "https://raw.githubusercontent.com/soapsama1337/v2bx-monitor/main/alpine-v2bx.sh" | sh
+```
 
 ---
-* **检测脚本是否生效**: 一旦输入完命令之后 请手动停止一次v2bx 然后等一分钟看他是否会自动运行
+* **检测脚本是否生效**: 一旦输入完命令之后 请手动停止一次v2bx 然后等一到三分钟看他是否会自动运行
 ---
 
